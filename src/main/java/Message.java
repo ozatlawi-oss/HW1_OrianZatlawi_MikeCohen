@@ -59,4 +59,6 @@ public abstract class Message {
     public boolean bigMessage(){
         return content.length() >= 500;
     }
+
+    public abstract String generatePreview();
 }
