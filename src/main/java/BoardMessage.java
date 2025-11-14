@@ -32,7 +32,7 @@ PriorityType priorityType;
 @Override
 public String toString()
 {
-    return super.toString()+"MessagePriority: "+this.priorityType+"\n";
+    return "{MessagePriority: " + this.priorityType+ "}"+ " " +super.toString();
 }
 
     /**

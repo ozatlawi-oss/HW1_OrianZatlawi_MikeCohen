@@ -39,7 +39,7 @@ public abstract class Message {
     @Override
     public String toString()
     {
-        return "{SenderName: " + sender + ", Content: " + content + ", SendDate(yy-MM-dd: " + sendDate + "}";
+        return "{SenderName: " + sender + ", Content: " + content + ", SendDate(yy-MM-dd: " + sendDate + "}" +"\n";
     }
 
     /**
