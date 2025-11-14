@@ -6,7 +6,7 @@ public class Menu {
                 "3)Print all Messages\n" +
                 "4)Show number of Messages that contain words\n" +
                 "5)print digital Messages\n" +
-                "6)Print SMS" +
+                "6)Print SMS\n" +
                 "7)EXIT");
 
     }

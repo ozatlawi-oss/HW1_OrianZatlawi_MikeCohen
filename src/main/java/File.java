@@ -1,6 +1,6 @@
 public class File {
-    String fileName;
-    String fileType;
+    private String fileName;
+    private String fileType;
 
     /**
      * Constructs a new File object.
@@ -22,4 +22,22 @@ public class File {
         return "{fileName: " + fileName + ", fileType: " + fileType + "}";
     }
 
+    // הוספתי גטים וסטים משמש
+    public String getFileName() {
+        return fileName;
+    }
+    public void setFileName(String fileName) {
+        if(fileName == null|| fileName.isEmpty())
+            throw new IllegalArgumentException("File name cannot be empty");
+        this.fileName = fileName;
+
+    }
+    public String getFileType() {
+    return fileType;
+    }
+    public void setFileType(String fileType) {
+        if(fileType == null || fileType.isEmpty())
+            throw new IllegalArgumentException("File type cannot be empty");
+        this.fileType = fileType;
+    }
 }

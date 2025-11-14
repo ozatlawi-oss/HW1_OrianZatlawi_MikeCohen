@@ -1,8 +1,8 @@
 
 public class SMS extends Message implements IDigital
 {
-    String phoneNumberSender;
-    String phoneNumberReceiver;
+   private String phoneNumberSender;
+   private String phoneNumberReceiver;
     public SMS(String sender, String content,String phoneNumberSender,String phoneNumberReceiver){
         super(sender,content);
         if(checkPhoneNumber(phoneNumberSender) ||checkPhoneNumber(phoneNumberReceiver))
