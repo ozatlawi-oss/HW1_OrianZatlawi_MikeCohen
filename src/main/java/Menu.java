@@ -47,7 +47,9 @@ public  class Menu {
             selection = scanner.nextLine();
             selection = selection.toUpperCase();
             if (selection.equals("Y")) {
+                System.out.println("Please enter the file name");
                 fileName = scanner.nextLine();
+                System.out.println("Please enter the file type");
                 fileType = scanner.nextLine();
                 files.add((new File(fileName, fileType)));
 

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public  class Main{
@@ -13,7 +14,15 @@ public  class Main{
         while(userInput!=7){
             Menu.printMenu();
             System.out.println("Enter Selection");
-           userInput=input.nextInt();
+           try{
+               userInput=input.nextInt();
+           }
+           catch(InputMismatchException e){
+               System.out.println("Invalid Selection please enter number 1-7");
+               input.nextLine();
+               continue;
+           }
+
            if(!Menu.checkInput(userInput)){
                System.out.println("Wrong INPUT! Valid input 1-7");
                continue;
