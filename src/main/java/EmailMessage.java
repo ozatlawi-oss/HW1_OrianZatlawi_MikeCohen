@@ -11,26 +11,28 @@ public class EmailMessage extends Message implements IDigital {
      * @param sender the name of the sender(e.g. "Orian","Mike")
      * @param content the content of the message
      * @param sendDate the date of the sent message (yyyy-MM-dd)
-     * @param category the category of the message
      * @param subject the subject of the email
      * @throws IllegalArgumentException subject cannot be null
      */
-    public  EmailMessage(String sender, String content, Date sendDate, String category,String subject , ArrayList<File> attachments)
+    public  EmailMessage(String sender, String content, Date sendDate,String subject,ArrayList<File> attachments)
     {
-    super(sender,content,sendDate,category);
+    super(sender,content,sendDate);
     setSubject(subject);
         this.attachments = new ArrayList<>();
+        this.attachments.addAll(attachments);
     }
     public EmailMessage(String sender, String content,String subject)
     {
         super(sender,content);
         setSubject(subject);
+        this.attachments = new ArrayList<>();
     }
     // כדי למנוע חזרתיות של כתיבה יצרתי סט בשביל הסבגקט
     public void setSubject(String subject) {
         if (subject == null || subject.isEmpty())
             throw new IllegalArgumentException("Subject cannot be empty");
         this.subject = subject;
+
     }
 
 @Override
@@ -49,7 +51,7 @@ public String generatePreview() {
 public void addAttachment(File file){
         attachments.add(file);
 }
-public void removeAttachment(File file){
+public void removeAttachment(File file) throws AttachmentException {
    boolean removed = false;
    for(int i =0;i<attachments.size();i++){
        if(attachments.get(i).equals(file)){
@@ -58,8 +60,9 @@ public void removeAttachment(File file){
            i--;
        }
    }
+
    if(!removed){
-       throw new IllegalArgumentException("Attachment not found");
+       throw new AttachmentException();
    }
 }
 

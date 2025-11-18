@@ -36,7 +36,8 @@ public class SMS extends Message implements IDigital
 
     @Override
     public String toString() {
-        return "sender: "+sender+"-"+phoneNumberSender+"\n"+
-                "recipient: "+phoneNumberReceiver+"\n";
+        return "sender-phone "+"-"+phoneNumberSender+"\n"+
+                "recipient: "+phoneNumberReceiver+"\n"+
+                "info:"+super.toString();
     }
 }
