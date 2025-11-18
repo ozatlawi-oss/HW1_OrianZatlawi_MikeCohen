@@ -2,10 +2,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class Message {
-    String sender;
-    String content;
-    Date sendDate;
-
+    protected String sender;
+    protected String content;
+    protected Date sendDate;
     /**
      *
      * @param sender the name of the sender(e.g. "Orian","Mike")
@@ -39,7 +38,7 @@ public abstract class Message {
     @Override
     public String toString()
     {
-        return "{SenderName: " + sender + ", Content: " + content + ", SendDate(yy-MM-dd: " + sendDate + "}" +"\n";
+        return "{SenderName: " + sender + ", Content: " + content + ", SendDate(yy-MM-dd: " + sendDate + "}\n";
     }
 
     /**

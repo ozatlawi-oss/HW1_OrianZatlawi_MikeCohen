@@ -1,9 +1,11 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class EmailMessage extends Message implements IDigital {
-    String subject;
-
+     private String subject;
+     private ArrayList<File> attachments;
+     // הוספתי תכונה
     /**
      *
      * @param sender the name of the sender(e.g. "Orian","Mike")
@@ -12,40 +14,56 @@ public class EmailMessage extends Message implements IDigital {
      * @param subject the subject of the email
      * @throws IllegalArgumentException subject cannot be null
      */
-    public  EmailMessage(String sender, String content, Date sendDate,String subject)
-{
+    public  EmailMessage(String sender, String content, Date sendDate,String subject,ArrayList<File> attachments)
+    {
     super(sender,content,sendDate);
-    if(subject.isEmpty()) {
-        throw new IllegalArgumentException("subject cannot be empty");
+    setSubject(subject);
+        this.attachments = new ArrayList<>();
+        this.attachments.addAll(attachments);
     }
-    else  {
+    public EmailMessage(String sender, String content,String subject)
+    {
+        super(sender,content);
+        setSubject(subject);
+        this.attachments = new ArrayList<>();
+    }
+    // כדי למנוע חזרתיות של כתיבה יצרתי סט בשביל הסבגקט
+    public void setSubject(String subject) {
+        if (subject == null || subject.isEmpty())
+            throw new IllegalArgumentException("Subject cannot be empty");
         this.subject = subject;
+
     }
-}
-public EmailMessage(String sender, String content,String subject)
-{
-    super(sender,content);
-     if(subject.isEmpty()) {
-        throw new IllegalArgumentException("subject cannot be empty");
-}
-       else{this.subject = subject;}
-}
+
 @Override
     public String toString(){
-        return "{subject: "+subject+ "}"+" "+super.toString();
+        return "{subject: "+subject+ "}"+" "+super.toString()+ ", Attachments: "+attachments+"}";
 }
 @Override
 public String printCommunicationMethod(){
         return "Sent via Email";
 }
 @Override
-
 public String generatePreview() {
     return "[Email] Subject: " + subject + " | " + "From: " + sender + "\n";
 }
-//public void addAttachment(File file){
-//        יש עניין בסעיפים g/h תחת 5
-    // נראה שצריך שדה שקשור לFile אבל בתרשים זה לא מצויין צריך לבדוק
-//}
+    // הוספתי את הפעולות
+public void addAttachment(File file){
+        attachments.add(file);
+}
+public void removeAttachment(File file) throws AttachmentException {
+   boolean removed = false;
+   for(int i =0;i<attachments.size();i++){
+       if(attachments.get(i).equals(file)){
+           attachments.remove(i);
+           removed = true;
+           i--;
+       }
+   }
+
+   if(!removed){
+       throw new AttachmentException();
+   }
+}
 
 }

@@ -1,4 +1,5 @@
 public enum PriorityType {
     REGULAR,
-    URGENT
+    URGENT ,
+    IMPORTANT
 }

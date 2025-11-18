@@ -12,11 +12,12 @@ PriorityType priorityType;
      * @param sendDate the date of the sent message (yyyy-MM-dd)
      * @param priorityType the priority of the message(Regular OR Urgent)
      */
-    public BoardMessage(String sender, String content, Date sendDate, PriorityType priorityType) {
-    super(sender,content,sendDate);
-    this.priorityType = priorityType; //איזה אספקשן אפשר לזרוק לזה?
-
-}
+    public BoardMessage(String sender, String content, Date sendDate,PriorityType priorityType) {
+    super(sender,content,sendDate );
+        if(priorityType ==null)
+            throw new IllegalArgumentException("PriorityType cannot be null");
+        this.priorityType = priorityType;
+    }
 
     /**
      *
@@ -28,9 +29,9 @@ PriorityType priorityType;
     public  BoardMessage(String sender,String content){
     super(sender,content);
     this.priorityType=PriorityType.REGULAR;
-}
-@Override
-public String toString()
+    }
+    @Override
+    public String toString()
 {
     return "{MessagePriority: " + this.priorityType+ "}"+ " " +super.toString();
 }

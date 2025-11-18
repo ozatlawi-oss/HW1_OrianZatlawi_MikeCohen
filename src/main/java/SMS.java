@@ -1,8 +1,8 @@
 
 public class SMS extends Message implements IDigital
 {
-    String phoneNumberSender;
-    String phoneNumberReceiver;
+   private String phoneNumberSender;
+   private String phoneNumberReceiver;
     public SMS(String sender, String content,String phoneNumberSender,String phoneNumberReceiver){
         super(sender,content);
         if(checkPhoneNumber(phoneNumberSender) ||checkPhoneNumber(phoneNumberReceiver))
@@ -36,7 +36,8 @@ public class SMS extends Message implements IDigital
 
     @Override
     public String toString() {
-        return "sender: "+sender+"-"+phoneNumberSender+"\n"+
-                "recipient: "+phoneNumberReceiver+"\n";
+        return "sender-phone "+"-"+phoneNumberSender+"\n"+
+                "recipient: "+phoneNumberReceiver+"\n"+
+                "info:"+super.toString();
     }
 }
