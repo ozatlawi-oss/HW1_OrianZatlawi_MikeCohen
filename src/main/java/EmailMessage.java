@@ -19,9 +19,6 @@ public class EmailMessage extends Message implements IDigital {
     {
     super(sender,content,sendDate,category);
     setSubject(subject);
-    if(attachments != null)
-        this.attachments = attachments;
-    else
         this.attachments = new ArrayList<>();
     }
     public EmailMessage(String sender, String content,String subject)
