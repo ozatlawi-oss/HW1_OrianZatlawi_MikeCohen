@@ -32,9 +32,19 @@ public class File {
         this.fileName = fileName;
 
     }
+
+    /**
+     *
+     * @return file type
+     */
     public String getFileType() {
     return fileType;
     }
+
+    /**
+     * Method to update file type if it is empty or does not exist throws an exception
+     * @param fileType
+     */
     public void setFileType(String fileType) {
         if(fileType == null || fileType.isEmpty())
             throw new IllegalArgumentException("File type cannot be empty");

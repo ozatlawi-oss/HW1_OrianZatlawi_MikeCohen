@@ -2,7 +2,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+
+
+/*
+* util class to print out Menu functions and execute them via Message classes
+* */
 public  class Menu {
+
+    /**
+     * Prints main menu
+     */
     public static void printMenu() {
         System.out.println("please select an option:\n" +
                 "1)Add Message\n" +
@@ -10,16 +19,25 @@ public  class Menu {
                 "3)Print all Messages\n" +
                 "4)Show number of Messages that contain words\n" +
                 "5)print digital Messages\n" +
-                "6)Show number of SMS\n" +
+                "6)Get Status(seen or not)\n" +
                 "7)EXIT");
     }
 
+    /**
+     *
+     * @param i uses input
+     * @return  if user input is correct
+     */
     public static boolean checkInput(int i) {
         return i >= 1 && i <= 7;
     }
     public static boolean checkInputSubMenu(int i){
         return i >= 1 && i <= 3;
     }
+
+    /**
+     * submenu for option one
+     */
 
     public static void addMessage() {
         System.out.println("""
@@ -66,6 +84,10 @@ public  class Menu {
         return new EmailMessage(sender, content, date, subject, files);
     }
 
+    /**
+     *
+     * @return boardMessage
+     */
     public static BoardMessage createBoardMessage() {
         Scanner scanner = new Scanner(System.in);
         String sender, content;
@@ -88,6 +110,10 @@ public  class Menu {
 
     }
 
+    /**
+     *
+     * @return SMS message
+     */
     public static SMS createSMS() {
         String phoneNumberSender;
         String phoneNumberReceiver;
@@ -145,15 +171,11 @@ public  class Menu {
             }
         }
         }
-        public static int cntSMS(ArrayList<Message> messages) {
-        int cnt=0;
-        for(Message message:messages){
-            if(message instanceof SMS){
-                cnt++;
-            }
-        }
-        return cnt;
-        }
+       public static void getSeenStatus(ArrayList<Message> messages) {
+           for(Message message:messages){
+               System.out.println("seen: "+message.getStatus());
+           }
+       }
 
 
     private static Date getDate(){

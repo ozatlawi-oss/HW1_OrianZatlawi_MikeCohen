@@ -60,7 +60,7 @@ public  class Main{
                    Menu.printDigitalMessages(messages);
                    break;
                case 6:
-                   System.out.println(Menu.cntSMS(messages));
+                   Menu.getSeenStatus(messages);
                    break;
                case 7:
                    System.out.println("Exiting...");

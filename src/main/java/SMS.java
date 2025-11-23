@@ -23,17 +23,30 @@ public class SMS extends Message implements IDigital
     {
             return !(phoneNumber.substring(0,2).equals("05")) || phoneNumber.length()!=10 || !phoneNumber.matches("\\d+");
     }
+    /**
+     a method that print the way of communication
+     @return SMS
+     */
     @Override
     public String printCommunicationMethod(){
         return "SMS";
     }
-@Override
+
+    /**
+     *
+     * @return shortened string of the message containing the sender's name and the first 15 characters of the message content.
+     */
+    @Override
     public String generatePreview(){
         if(content.length()>15)
         return "You have incoming message from: "+sender+"-"+phoneNumberSender+"\n"+content.substring(0,15)+"......\n";
         return "You have incoming message from: "+sender+"-"+phoneNumberSender+"\n"+content+"......\n"; //returns the entire massage because it shorter then 15
     }
 
+    /**
+     *
+     * @provides information about the SMS message
+     */
     @Override
     public String toString() {
         return "sender-phone "+"-"+phoneNumberSender+"\n"+

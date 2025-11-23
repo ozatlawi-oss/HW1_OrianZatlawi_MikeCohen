@@ -14,6 +14,16 @@ public class EmailMessage extends Message implements IDigital {
      * @param subject the subject of the email
      * @throws IllegalArgumentException subject cannot be null
      */
+    /**
+     *
+     * @param sender
+     * @param content
+     * @param sendDate
+     * @param subject
+     * @param attachments
+     */
+
+    /**A constructor that accepts all the fields of the class */
     public  EmailMessage(String sender, String content, Date sendDate,String subject,ArrayList<File> attachments)
     {
     super(sender,content,sendDate);
@@ -21,13 +31,17 @@ public class EmailMessage extends Message implements IDigital {
         this.attachments = new ArrayList<>();
         this.attachments.addAll(attachments);
     }
+    /**A constructor that accepts sender content subject */
     public EmailMessage(String sender, String content,String subject)
     {
         super(sender,content);
         setSubject(subject);
         this.attachments = new ArrayList<>();
     }
-    // כדי למנוע חזרתיות של כתיבה יצרתי סט בשביל הסבגקט
+
+    /**
+     * @param subject sets the subject
+     */
     public void setSubject(String subject) {
         if (subject == null || subject.isEmpty())
             throw new IllegalArgumentException("Subject cannot be empty");
@@ -35,23 +49,48 @@ public class EmailMessage extends Message implements IDigital {
 
     }
 
-@Override
+    /**
+     *
+     * provides inforamation about the Email message
+     */
+    @Override
     public String toString(){
         return "{subject: "+subject+ "}"+" "+super.toString()+ ", Attachments: "+attachments+"}";
 }
-@Override
+
+    /**
+     *
+     * @return the communication method
+     */
+    @Override
 public String printCommunicationMethod(){
         return "Sent via Email";
 }
-@Override
+
+    /**
+     *
+     * @return shortened string of the message containing the sender's name and the first 15 characters of the message content.
+     */
+    @Override
 public String generatePreview() {
     return "[Email] Subject: " + subject + " | " + "From: " + sender + "\n";
 }
-    // הוספתי את הפעולות
-public void addAttachment(File file){
+
+    /**
+     *
+     * @param method that accepts a File as a parameter and adds it to the dynamic array of files.
+     */
+    public void addAttachment(File file){
         attachments.add(file);
-}
-public void removeAttachment(File file) throws AttachmentException {
+
+    }
+
+    /**
+     * Deletes all files from the dynamic array that match the file received as a parameter. If this file does not exist in the array at all, an AttachmentException should be thrown with an appropriate message.
+     * @param file
+     * @throws AttachmentException
+     */
+    public void removeAttachment(File file) throws AttachmentException {
    boolean removed = false;
    for(int i =0;i<attachments.size();i++){
        if(attachments.get(i).equals(file)){
@@ -60,7 +99,6 @@ public void removeAttachment(File file) throws AttachmentException {
            i--;
        }
    }
-
    if(!removed){
        throw new AttachmentException();
    }

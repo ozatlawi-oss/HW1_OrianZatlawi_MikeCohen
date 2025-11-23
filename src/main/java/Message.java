@@ -5,6 +5,7 @@ public abstract class Message {
     protected String sender;
     protected String content;
     protected Date sendDate;
+    protected boolean seen; //added field that required by the task. will default to false and become true once toString activate  once
     /**
      *
      * @param sender the name of the sender(e.g. "Orian","Mike")
@@ -20,6 +21,7 @@ public abstract class Message {
         this.sender = sender;
         this.content = content;
         this.sendDate = sendDate;
+        this.seen = false;
     }
 
     /**
@@ -33,12 +35,14 @@ public abstract class Message {
         }
         this.sender = sender;
         this.content = content;
+        this.seen = false;
         this.sendDate = new Date();
     }
     @Override
     public String toString()
     {
-        return "{SenderName: " + sender + ", Content: " + content + ", SendDate(yy-MM-dd: " + sendDate + "}\n";
+        this.seen = true;
+        return "{SenderName: " + sender + ", Content: " + content + ", SendDate(yy-MM-dd: " + sendDate + "Status: "+seen+"}"+"\n";
     }
 
     /**
@@ -52,6 +56,14 @@ public abstract class Message {
     }
 
     /**
+     *
+     * @return status of the message
+     */
+    public  boolean getStatus(){
+      return this.seen;
+    }
+
+    /**
      * Self added method according to the request in the task
      * @return if a message contains more then 500 chars it considered big
      */
@@ -61,3 +73,4 @@ public abstract class Message {
 
     public abstract String generatePreview();
 }
+
